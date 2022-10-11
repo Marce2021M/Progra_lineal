@@ -1,0 +1,353 @@
+---
+title: "Tarea 2 modelado"
+output: html_document
+date: '2022-10-10'
+---
+
+# Preparación
+
+```{r}
+library(linprog)
+library(lpSolve)
+```
+#PROBLEMA 17
+
+## Input de nuestro problema de programación lineal
+
+```{r}
+r1 = c(.4,.32)
+r2 = c(.2,.4)
+r3 = c(.35,.2)
+
+c = c(1,9)
+b = c(1000000,400000,250000)
+
+A = rbind(r1,r2,r3)
+```
+
+## Configuración del problema
+
+```{r}
+# Matriz de la función objetivo
+
+objetivo <- c 
+
+# Matriz de las restricciones 
+
+restricciones <- A
+
+# Lado derecho de las restricciones 
+
+derecho <- b
+
+
+# Dirección de las restricciones
+
+direccion <- c(">=",">=",">=")
+
+# Solución óptima 
+
+optimo <- lp(direction = "min", 
+             objective.in = objetivo,
+             const.mat = restricciones,
+             const.dir = direccion,
+             const.rhs = derecho,
+             all.int = F)
+
+```
+
+
+## Solución
+
+```{r}
+
+paste0("Se deben comprar ",optimo$solution[1]," de petróleo crudo ligero y ",optimo$solution[2]," de petróleo crudo pesado. Todo esto nos genera un costo de ",optimo$objval)
+
+```
+
+
+
+#PROBLEMA 18
+
+## Input de nuestro problema de programación lineal
+
+```{r}
+r1 = c(1,1,0,0,0)
+r2 = c(1,0,0,0,0)
+r3 = c(0,1,0,0,0)
+r4 = c(0,0,1,0,0)
+r5 = c(0,0,0,1,0)
+r6 = c(0,0,0,0,1)
+r7 = c(1000,2000,1500,2500,300)
+r8 = c(15000,30000,0,0,0)
+
+
+c = c(15,30,4,10,1)
+b = c(10,22,13,26,4,22,50000,180000)
+
+A = rbind(r1,r2,r3,r4,r5,r6,r7,r8)
+```
+
+## Configuración del problema
+
+```{r}
+# Matriz de la función objetivo
+
+objetivo <- c 
+
+# Matriz de las restricciones 
+
+restricciones <- A
+
+# Lado derecho de las restricciones 
+
+derecho <- b
+
+
+# Dirección de las restricciones
+
+direccion <- c(">=","<=","<=","<=","<=","<=",">=","<=")
+
+# Solución óptima 
+
+optimo <- lp(direction = "min", 
+             objective.in = objetivo,
+             const.mat = restricciones,
+             const.dir = direccion,
+             const.rhs = derecho,
+             all.int = F)
+
+```
+
+
+## Solución
+
+```{r}
+paste0("Se deben comprar ",optimo$solution[1]," anuncios de Tv diurna, ",optimo$solution[2]," de anuncios de Tv nocturna, ",optimo$solution[3]," anuncios por periódico diario, ",optimo$solution[4]," de anuncios de periódico dominical, ", optimo$solution[5], " de anuncios por radio. ",". Todo esto nos genera un costo de ",optimo$objval)
+```
+
+#PROBLEMA 19
+
+## Input de nuestro problema de programación lineal
+
+```{r}
+r1 = c(.1,.2,.4)
+r2 = c(0.45,.25,.3)
+
+
+c = c(150,100,200)
+b = c(30,40)
+
+A = rbind(r1,r2)
+```
+
+## Configuración del problema
+
+```{r}
+# Matriz de la función objetivo
+
+objetivo <- c 
+
+# Matriz de las restricciones 
+
+restricciones <- A
+
+# Lado derecho de las restricciones 
+
+derecho <- b
+
+
+# Dirección de las restricciones
+
+direccion <- c(">=",">=")
+
+# Solución óptima 
+
+optimo <- lp(direction = "min", 
+             objective.in = objetivo,
+             const.mat = restricciones,
+             const.dir = direccion,
+             const.rhs = derecho,
+             all.int = F)
+
+```
+
+
+## Solución
+
+```{r}
+paste0("Se deben procesar ",optimo$solution[1]," toneladas de desechos de la fábrica 1, " ,optimo$solution[2]," toneladas de desechos de la fábrica 2, ",optimo$solution[3]," toneladas de desechos de la fábrica 3. Todo esto nos genera un costo de ",optimo$objval)
+
+```
+
+#PROBLEMA 17
+
+## Input de nuestro problema de programación lineal
+
+```{r}
+r1 = c(0,0,0,0,0,0,0,0,0,1,1,1,1)
+r2 = c(0,0,1,0,0,0,1,0,1,0,0,0,1)
+r3 = c(0,1,0,0,0,1,0,-1,-1,0,0,1,0)
+r4 = c(0,0,0,1,1,1,1,0,0,0,0,0,0)
+r5 = c(-1,-1,-1,0,1,0,0,0,0,0,1,0,0)
+r6 = c(1,0,0,1,0,0,0,1,0,1,0,0,0)
+
+c = c(1,13,8,2,3,15,5,14,17,7,8,20,3)
+b = c(1,3,-2,2,1,1)
+
+A = rbind(r1,r2,r3,r4,r5,r6)
+```
+
+## Configuración del problema
+
+```{r}
+# Matriz de la función objetivo
+
+objetivo <- c 
+
+# Matriz de las restricciones 
+
+restricciones <- A
+
+# Lado derecho de las restricciones 
+
+derecho <- b
+
+
+# Dirección de las restricciones
+
+direccion <- c("=","=","=","=","=","=")
+
+# Solución óptima 
+
+optimo <- lp(direction = "min", 
+             objective.in = objetivo,
+             const.mat = restricciones,
+             const.dir = direccion,
+             const.rhs = derecho,
+             all.int = F)
+
+```
+
+
+## Solución
+
+```{r}
+optimo
+```
+
+#PROBLEMA 17
+
+## Input de nuestro problema de programación lineal
+
+```{r}
+r1 = c(0,0,0,0,0,0,0,0,0,1,1,1,1)
+r2 = c(0,0,1,0,0,0,1,0,1,0,0,0,1)
+r3 = c(0,1,0,0,0,1,0,-1,-1,0,0,1,0)
+r4 = c(0,0,0,1,1,1,1,0,0,0,0,0,0)
+r5 = c(-1,-1,-1,0,1,0,0,0,0,0,1,0,0)
+r6 = c(1,0,0,1,0,0,0,1,0,1,0,0,0)
+
+c = c(1,13,8,2,3,15,5,14,17,7,8,20,3)
+b = c(1,3,-2,2,1,1)
+
+A = rbind(r1,r2,r3,r4,r5,r6)
+```
+
+## Configuración del problema
+
+```{r}
+# Matriz de la función objetivo
+
+objetivo <- c 
+
+# Matriz de las restricciones 
+
+restricciones <- A
+
+# Lado derecho de las restricciones 
+
+derecho <- b
+
+
+# Dirección de las restricciones
+
+direccion <- c("=","=","=","=","=","=")
+
+# Solución óptima 
+
+optimo <- lp(direction = "min", 
+             objective.in = objetivo,
+             const.mat = restricciones,
+             const.dir = direccion,
+             const.rhs = derecho,
+             all.int = F)
+
+```
+
+
+## Solución
+
+```{r}
+optimo
+```
+
+#PROBLEMA 17
+
+## Input de nuestro problema de programación lineal
+
+```{r}
+r1 = c(0,0,0,0,0,0,0,0,0,1,1,1,1)
+r2 = c(0,0,1,0,0,0,1,0,1,0,0,0,1)
+r3 = c(0,1,0,0,0,1,0,-1,-1,0,0,1,0)
+r4 = c(0,0,0,1,1,1,1,0,0,0,0,0,0)
+r5 = c(-1,-1,-1,0,1,0,0,0,0,0,1,0,0)
+r6 = c(1,0,0,1,0,0,0,1,0,1,0,0,0)
+
+c = c(1,13,8,2,3,15,5,14,17,7,8,20,3)
+b = c(1,3,-2,2,1,1)
+
+A = rbind(r1,r2,r3,r4,r5,r6)
+```
+
+## Configuración del problema
+
+```{r}
+# Matriz de la función objetivo
+
+objetivo <- c 
+
+# Matriz de las restricciones 
+
+restricciones <- A
+
+# Lado derecho de las restricciones 
+
+derecho <- b
+
+
+# Dirección de las restricciones
+
+direccion <- c("=","=","=","=","=","=")
+
+# Solución óptima 
+
+optimo <- lp(direction = "min", 
+             objective.in = objetivo,
+             const.mat = restricciones,
+             const.dir = direccion,
+             const.rhs = derecho,
+             all.int = F)
+
+```
+
+
+## Solución
+
+```{r}
+optimo
+```
+
+
+
+
